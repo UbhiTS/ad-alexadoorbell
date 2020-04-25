@@ -9,9 +9,9 @@
 Amazon Alexa will notify you like a doorbell, (thus the name, so creative aren't I!) based on a motion sensor placed on your doorway.
 
 You can also :- 
-- Add a Door Sensor ([Ecolink Door Sensor](https://www.amazon.com/Aeotec-Window-Contact-sensors-Battery/dp/B07PDDX3K6/ref=sr_1_16?dchild=1&keywords=eco+wave+door+sensor&qid=1587791320&s=electronics&sr=1-16) or any other) to the setup to only ring the bell if the door is currently closed, and has been closed for the last 30 seconds or more. This is so that the bell only rings when someone arrives at your door and not when you step out.
-- Add an outdoor Alexa to greet your guest with a pleasant message based on the time of day
-- Add a doorbell ([Aeotec Doorbell](https://aeotec.com/z-wave-doorbell/) or any other) to ring
+- add a door sensor ([Ecolink Door Sensor](https://www.amazon.com/Aeotec-Window-Contact-sensors-Battery/dp/B07PDDX3K6/ref=sr_1_16?dchild=1&keywords=eco+wave+door+sensor&qid=1587791320&s=electronics&sr=1-16) or any other) to the setup to only ring the bell if the door is currently closed, and has been closed for the last 30 seconds or more. This is so that the bell only rings when someone arrives at your door and not when you step out.
+- add an outdoor Alexa to greet your guest with a pleasant message based on the time of day
+- add a doorbell ([Aeotec Doorbell](https://aeotec.com/z-wave-doorbell/) or any other) to ring
 
 Please ⭐ this repo if you like my work and also check out my other repos like
 - [Home Assistant 'STEROIDS' Configuration](https://github.com/UbhiTS/ha-config-ataraxis)
