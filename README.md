@@ -27,17 +27,29 @@ Use [HACS](https://github.com/custom-components/hacs) or [download](https://gith
 
 ## App Configuration (config/appdaemon/apps/apps.yaml)
 
+### Basic Config ###
 ```yaml
 alexa_doorbell:
   module: alexa_doorbell
   class: AlexaDoorbell
   door:
     motion_sensor: binary_sensor.main_door_motion
-    #sensor: binary_sensor.main_door # optional
-    #alexa: media_player.entryway_alexa # optional
   home:
     alexa: media_player.kitchen_alexa
-    #doorbell: switch.living_room_doorbell # optional
+```
+
+### Advanced Config ###
+```yaml
+alexa_doorbell:
+  module: alexa_doorbell
+  class: AlexaDoorbell
+  door:
+    motion_sensor: binary_sensor.main_door_motion
+    sensor: binary_sensor.main_door # optional
+    alexa: media_player.entryway_alexa # optional
+  home:
+    alexa: media_player.kitchen_alexa
+    doorbell: switch.living_room_doorbell # optional
   time:
     start: "07:00:00" # optional, default 7 AM
     end: "18:00:00" # optional, default 10 PM
