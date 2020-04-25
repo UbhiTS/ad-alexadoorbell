@@ -48,7 +48,7 @@ key | optional | type | default | description
 `module` | False | string | alexa_doorbell | The module name of the app.
 `class` | False | string | AlexaDoorbell | The name of the Class.
 `door > motion_sensor` | False | motion_sensor |  | The motion sensor to trigger the app.
-`door > sensor` | True | binary_sensor | door/window sensor | Set to trigger based on door status
+`door > sensor` | True | binary_sensor |  | Set to trigger based on door status
 `door > alexa` | True | media_player |  | Set to greet your guest with a pleasant greeting
 `home > alexa` | False | media_player |  | The Alexa to notify inside the house
 `home > doorbell` | True | switch |  | Set to ring this doorbell (or switch on a light) 
