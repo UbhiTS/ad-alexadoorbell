@@ -6,7 +6,7 @@
      style="height:41px !important; width:174px !important;" />
 </a>
 
-Amazon Alexa will notify you like a doorbell, (thus the name, I'm so creative!) based on a motion sensor placed on your doorway.
+Amazon Alexa will notify you like a doorbell, (thus the name, so creative aren't I!) based on a motion sensor placed on your doorway.
 
 You can also :- 
 - 1. Add a Door Sensor ([Ecolink Door Sensor](https://www.amazon.com/Aeotec-Window-Contact-sensors-Battery/dp/B07PDDX3K6/ref=sr_1_16?dchild=1&keywords=eco+wave+door+sensor&qid=1587791320&s=electronics&sr=1-16) or any other) to the setup to only ring the bell if the door is currently closed, and has been closed for the last 30 seconds or more. This is so that the bell only rings when someone arrives at your door and not when you step out.
