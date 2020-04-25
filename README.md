@@ -47,13 +47,13 @@ key | optional | type | default | description
 -- | -- | -- | -- | --
 `module` | **False** | string | alexa_doorbell | The module name of the app.
 `class` | **False** | string | AlexaDoorbell | The name of the Class.
-`door|motion_sensor` | **False** | motion_sensor |  | The motion sensor to trigger the app.
-`door|sensor` | True | binary_sensor |  | Set to trigger based on door status
-`door|alexa` | True | media_player |  | Set to greet your guest with a pleasant greeting
-`home|alexa` | **False** | media_player |  | The Alexa to notify inside the house
-`home|doorbell` | True | switch |  | Set to ring this doorbell (or switch on a light) 
-`time|start` | True | time | 07:00:00 | The time to enable the service. (24h format)
-`time|end` | True | time | 22:00:00 | The time to disable the service. (24h format)
+`door\|motion_sensor` | **False** | motion_sensor |  | The motion sensor to trigger the app.
+`door\|sensor` | True | binary_sensor |  | Set to trigger based on door status
+`door\|alexa` | True | media_player |  | Set to greet your guest with a pleasant greeting
+`home\|alexa` | **False** | media_player |  | The Alexa to notify inside the house
+`home\|doorbell` | True | switch |  | Set to ring this doorbell (or switch on a light) 
+`time\|start` | True | time | 07:00:00 | The time to enable the service. (24h format)
+`time\|end` | True | time | 22:00:00 | The time to disable the service. (24h format)
 
 ## Thank you!
 This app wouldn't be possible without the amazing work done by the developers and community at **[Home Assistant](https://www.home-assistant.io/)**, and of Keaton Taylor and Alan Tse on their **Alexa Media Player integration** for Home Assistant. *https://github.com/custom-components/alexa_media_player*
