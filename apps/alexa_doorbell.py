@@ -68,26 +68,24 @@ class AlexaDoorbell(hass.Hass):
           self.log("OUTSIDE TIME RANGE")
           
         #self.run_in(self.set_guest_volume_high, 1)
-        if self.door_alexa is not None: self.run_in(self.notify_guest, guest_notify_delay)
+        if self.door_alexa is not None: self.run_in(self.notify_guest, guest_notify_delay, time_okay = time_okay)
         #self.run_in(self.set_guest_volume_low, 5)
       else:
         self.log("DOOR OPEN, OR CLOSED < 30 SECS AGO")
 
 
-  def guest_greeting(self):
+  def guest_greeting(self, time_okay):
     
     hour = datetime.now().hour
     
-    if hour >= 0 and hour <= 4:
+    if (not time_okay) or (22 <= hour and hour <= 23) or (0 <= hour and hour <= 4):
       greeting = "Hi, Welcome. Please ring the bell if you want to notify the family inside."
-    if hour >= 5 and hour <= 11:
+    elif 5 <= hour and hour <= 11:
       greeting = "Good morning. Welcome. I've notified the family. Someone will be at the door shortly."
-    elif hour >= 12 and hour <= 16:
+    elif 12 <= hour and hour <= 16:
       greeting = "Good afternoon. Welcome. I've notified the family. Someone will be at the door shortly."
-    elif hour >= 17 and hour <= 21:
+    elif 17 <= hour and hour <= 21:
       greeting = "Good evening. Welcome. I've notified the family. Someone will be at the door shortly."
-    elif hour >= 22 and hour <= 23:
-      greeting = "Hi, Welcome. Please ring the bell if you want to notify the family inside."
       
     return greeting
 
@@ -103,15 +101,6 @@ class AlexaDoorbell(hass.Hass):
 
 
   def notify_guest(self, kwargs):
-    self.call_service("notify/alexa_media", data = {"type": "announce" if self.door_alexa_bell else "tts", "method": "all"}, target = self.door_alexa, message = self.guest_greeting())
+    self.call_service("notify/alexa_media", data = {"type": "announce" if self.door_alexa_bell else "tts", "method": "all"}, target = self.door_alexa, message = self.guest_greeting(kwargs["time_okay"]))
     self.log("NOTIFY GUEST")
 
-
-#  def set_guest_volume_high(self, kwargs):
-#    self.call_service("media_player/volume_set", entity_id = self.door_alexa, volume_level = .99)
-#    self.log("GUEST VOLUME HIGH")
-
-
-#  def set_guest_volume_low(self, kwargs):
-#    self.call_service("media_player/volume_set", entity_id = self.door_alexa, volume_level = .40)
-#    self.log("GUEST VOLUME LOW")
