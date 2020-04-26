@@ -9,11 +9,13 @@ from datetime import datetime, time
 #  class: AlexaDoorbell
 #  door:
 #    motion_sensor: binary_sensor.main_door_motion
-#    #sensor: binary_sensor.main_door # optional
-#    #alexa: media_player.entryway_alexa # optional
+#    sensor: binary_sensor.main_door # optional
+#    alexa: media_player.entryway_alexa # optional
+#    announce_bell: False # optional
 #  home:
 #    alexa: media_player.kitchen_alexa
-#    #doorbell: switch.living_room_doorbell # optional
+#    doorbell: switch.living_room_doorbell # optional
+#    announce_bell: False # optional
 #  time:
 #    start: "07:00:00" # optional, default 7 AM
 #    end: "22:00:00" # optional, default 10 PM
@@ -24,8 +26,10 @@ class AlexaDoorbell(hass.Hass):
     
     self.door_motion_sensor = self.args["door"]["motion_sensor"] if "motion_sensor" in self.args["door"] else None
     self.home_alexa = self.args["home"]["alexa"] if "alexa" in self.args["home"] else None
+    self.home_alexa_bell = self.args["home"]["announce_bell"] if "announce_bell" in self.args["home"] else None
     self.door_sensor = self.args["door"]["sensor"] if "sensor" in self.args["door"] else None
     self.door_alexa = self.args["door"]["alexa"] if "alexa" in self.args["door"] else None
+    self.door_alexa_bell = self.args["door"]["announce_bell"] if "announce_bell" in self.args["door"] else None
     self.home_doorbell = self.args["home"]["doorbell"] if "doorbell" in self.args["home"] else None
     
     if self.door_motion_sensor is None: raise ValueError("door:motion_sensor must be defined")
@@ -93,12 +97,12 @@ class AlexaDoorbell(hass.Hass):
     
     
   def notify_home(self, kwargs):
-    self.call_service("notify/alexa_media", data = {"type":"announce", "method":"all"}, target = self.home_alexa, message = "Your attention please. There is someone at the door!")
+    self.call_service("notify/alexa_media", data = {"type": "announce" if self.home_alexa_bell else "tts", "method": "all"}, target = self.home_alexa, message = "Your attention please. There is someone at the door!")
     self.log("NOTIFY HOME")
 
 
   def notify_guest(self, kwargs):
-    self.call_service("notify/alexa_media", data = {"type":"tts", "method":"all"}, target = self.door_alexa, message = self.guest_greeting())
+    self.call_service("notify/alexa_media", data = {"type": "announce" if self.door_alexa_bell else "tts", "method": "all"}, target = self.door_alexa, message = self.guest_greeting())
     self.log("NOTIFY GUEST")
 
 
