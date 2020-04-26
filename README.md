@@ -1,5 +1,7 @@
 # Alexa (& Sonos) Doorbell : AppDaemon App (HASS) :chicken:
 
+### For SONOS, set Announce_Bell: False (thanks to @5and0)
+
 <a href="https://www.buymeacoffee.com/ubhits" target="_blank">
 <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
      alt="Buy Me A Beer" 
