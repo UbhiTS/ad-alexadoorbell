@@ -1,4 +1,4 @@
-# Alexa (& Sonos) Doorbell : AppDaemon App (HASS) :chicken:
+# Alexa (& Sonos) Doorbell : AppDaemon (HASS) :chicken:
 
 ### For SONOS, set Announce_Bell: False (thanks to @5and0)
 
