@@ -1,4 +1,4 @@
-# Alexa Doorbell : AppDaemon App (HASS) :chicken:
+# Alexa (& SONOS) Doorbell : AppDaemon App (HASS) :chicken:
 
 <a href="https://www.buymeacoffee.com/ubhits" target="_blank">
 <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
@@ -36,6 +36,7 @@ alexa_doorbell:
     motion_sensor: binary_sensor.main_door_motion
   home:
     alexa: media_player.kitchen_alexa
+    announce_bell: False # optional, set to False for SONOS
 ```
 
 ### Advanced Config ###
@@ -47,9 +48,11 @@ alexa_doorbell:
     motion_sensor: binary_sensor.main_door_motion
     sensor: binary_sensor.main_door # optional
     alexa: media_player.entryway_alexa # optional
+    announce_bell: False # optional, set to False for SONOS
   home:
     alexa: media_player.kitchen_alexa
     doorbell: switch.living_room_doorbell # optional
+    announce_bell: False # optional, set to False for SONOS
   time:
     start: "07:00:00" # optional, default 7 AM
     end: "18:00:00" # optional, default 10 PM
@@ -62,7 +65,9 @@ key | optional | type | default | description
 `door\|motion_sensor` | **False** | motion_sensor |  | The motion sensor to trigger the app.
 `door\|sensor` | True | binary_sensor |  | Set to trigger based on door status
 `door\|alexa` | True | media_player |  | Set to greet your guest with a pleasant greeting
+`door\|announce_bell` | True | bool | False | Prefix bell sound before announcement. Set to false for SONOS
 `home\|alexa` | **False** | media_player |  | The Alexa to notify inside the house
+`home\|announce_bell` | True | bool | False | Prefix bell sound before announcement. Set to false for SONOS
 `home\|doorbell` | True | switch |  | Set to ring this doorbell (or switch on a light) 
 `time\|start` | True | time | 07:00:00 | The time to enable the service. (24h format)
 `time\|end` | True | time | 22:00:00 | The time to disable the service. (24h format)
