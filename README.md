@@ -1,5 +1,8 @@
 # Alexa (& Sonos) Doorbell : AppDaemon (HASS) :chicken:
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+
+
 ### For SONOS, set Announce_Bell: False (thanks to @5and0)
 
 <a href="https://www.buymeacoffee.com/ubhits" target="_blank">
