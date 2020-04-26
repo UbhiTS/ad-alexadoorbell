@@ -2,6 +2,7 @@ import appdaemon.plugins.hass.hassapi as hass
 from datetime import datetime, time
 #
 # Alexa Doorbell Controller App
+# Developed by @UbhiTS on GitHub
 #
 # Args:
 #alexa_doorbell:
@@ -26,10 +27,10 @@ class AlexaDoorbell(hass.Hass):
     
     self.door_motion_sensor = self.args["door"]["motion_sensor"] if "motion_sensor" in self.args["door"] else None
     self.home_alexa = self.args["home"]["alexa"] if "alexa" in self.args["home"] else None
-    self.home_alexa_bell = self.args["home"]["announce_bell"] if "announce_bell" in self.args["home"] else None
+    self.home_alexa_bell = self.args["home"]["announce_bell"] if "announce_bell" in self.args["home"] else True
     self.door_sensor = self.args["door"]["sensor"] if "sensor" in self.args["door"] else None
     self.door_alexa = self.args["door"]["alexa"] if "alexa" in self.args["door"] else None
-    self.door_alexa_bell = self.args["door"]["announce_bell"] if "announce_bell" in self.args["door"] else None
+    self.door_alexa_bell = self.args["door"]["announce_bell"] if "announce_bell" in self.args["door"] else False
     self.home_doorbell = self.args["home"]["doorbell"] if "doorbell" in self.args["home"] else None
     
     if self.door_motion_sensor is None: raise ValueError("door:motion_sensor must be defined")
