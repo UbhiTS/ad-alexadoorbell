@@ -5,12 +5,6 @@
 
 ### For SONOS, set Announce_Bell: False (thanks to @5and0)
 
-<a href="https://www.buymeacoffee.com/ubhits" target="_blank">
-<img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
-     alt="Buy Me A Beer" 
-     style="height:41px !important; width:174px !important;" />
-</a>
-
 Amazon Alexa will notify you like a doorbell, (thus the name, so creative aren't I!) based on a motion sensor placed on your doorway.
 
 You can also :- 
