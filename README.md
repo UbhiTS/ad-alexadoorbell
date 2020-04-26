@@ -2,7 +2,6 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
-
 ### For SONOS, set Announce_Bell: False (thanks to @5and0)
 
 Amazon Alexa will notify you like a doorbell, (thus the name, so creative aren't I!) based on a motion sensor placed on your doorway.
@@ -14,7 +13,10 @@ You can also :-
 
 Please ⭐ this repo if you like my work and also check out my other repos like
 - [Home Assistant 'STEROIDS' Configuration](https://github.com/UbhiTS/ha-config-ataraxis)
-- [Alexa Talking Clock](https://github.com/UbhiTS/ad-alexatalkingclock)
+- [Alexa (& Sonos) Talking Clock](https://github.com/UbhiTS/ad-alexatalkingclock)
+- [Alexa (& Sonos) Doorbell](https://github.com/UbhiTS/ad-alexadoorbell)
+- [Alexa (& Sonos) Door/Window Announce](https://github.com/UbhiTS/ad-alexadoorwindowannounce)
+- [Alexa (& Sonos) Smart Talking Thermostat](https://github.com/UbhiTS/ad-alexasmarttalkingthermostat)
 
 Also, if you want to see a walkthrough of my Home Assistant configuration, I have my video walkthrough on youtube below
 - [Home Automation on 'STEROIDS' : Video Walkthrough](https://youtu.be/qqktLE9_45A)
