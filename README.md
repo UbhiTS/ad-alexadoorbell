@@ -1,4 +1,4 @@
-# Alexa (& SONOS) Doorbell : AppDaemon App (HASS) :chicken:
+# Alexa (& Sonos) Doorbell : AppDaemon App (HASS) :chicken:
 
 <a href="https://www.buymeacoffee.com/ubhits" target="_blank">
 <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
