@@ -35,7 +35,7 @@ alexa_doorbell:
     motion_sensor: binary_sensor.main_door_motion
   home:
     alexa: media_player.kitchen_alexa
-    announce_bell: True # set to False for SONOS
+    announce_bell: True # optional, set to False for SONOS
 ```
 
 ### Advanced Config
