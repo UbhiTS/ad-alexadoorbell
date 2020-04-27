@@ -1,4 +1,4 @@
-# Alexa (& Friends) Doorbell : AppDaemon HASS :chicken:
+# Alexa (& Friends) Doorbell :chicken:
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
