@@ -26,15 +26,12 @@ class AlexaDoorbell(hass.Hass):
   def initialize(self):
     
     self.door_motion_sensor = self.args["door"]["motion_sensor"] if "motion_sensor" in self.args["door"] else None
-    self.home_alexa = self.args["home"]["alexa"] if "alexa" in self.args["home"] else None
-    self.home_alexa_bell = self.args["home"]["announce_bell"] if "announce_bell" in self.args["home"] else True
     self.door_sensor = self.args["door"]["sensor"] if "sensor" in self.args["door"] else None
     self.door_alexa = self.args["door"]["alexa"] if "alexa" in self.args["door"] else None
     self.door_alexa_bell = self.args["door"]["announce_bell"] if "announce_bell" in self.args["door"] else False
+    self.home_alexa = self.args["home"]["alexa"] if "alexa" in self.args["home"] else None
+    self.home_alexa_bell = self.args["home"]["announce_bell"] if "announce_bell" in self.args["home"] else True
     self.home_doorbell = self.args["home"]["doorbell"] if "doorbell" in self.args["home"] else None
-    
-    if self.door_motion_sensor is None: raise ValueError("door:motion_sensor must be defined")
-    if self.home_alexa is None: raise ValueError("home:alexa must be defined")
     
     self.listen_state(self.evaluate_and_ring_doorbell, self.door_motion_sensor, attribute = "state")
     
@@ -61,17 +58,20 @@ class AlexaDoorbell(hass.Hass):
       if door_closed and last_door_closed_seconds > 30:
         guest_notify_delay = 5
         if time_okay:
-          if self.home_doorbell is not None: self.run_in(self.doorbell_ring, 0)
+          if self.home_doorbell is not None:
+            self.run_in(self.doorbell_ring, 0)
           self.run_in(self.notify_home, 0)
         else:
           guest_notify_delay = 0
           self.log("OUTSIDE TIME RANGE")
           
-        #self.run_in(self.set_guest_volume_high, 1)
-        if self.door_alexa is not None: self.run_in(self.notify_guest, guest_notify_delay, time_okay = time_okay)
-        #self.run_in(self.set_guest_volume_low, 5)
+        if self.door_alexa is not None:
+          self.run_in(self.notify_guest, guest_notify_delay, message = self.guest_greeting(time_okay))
       else:
-        self.log("DOOR OPEN, OR CLOSED < 30 SECS AGO")
+        if not door_closed:
+          self.log("DOOR IS OPEN")
+        elif last_door_closed_seconds < 30:
+          self.log("DOOR CLOSED < 30 SECS AGO")
 
 
   def guest_greeting(self, time_okay):
@@ -96,11 +96,11 @@ class AlexaDoorbell(hass.Hass):
     
     
   def notify_home(self, kwargs):
-    self.call_service("notify/alexa_media", data = {"type": "announce" if self.home_alexa_bell else "tts", "method": "all"}, target = self.home_alexa, message = "Your attention please. There is someone at the door!")
+    self.call_service("notify/alexa_media", data = {"type": "announce" if self.home_alexa_bell else "tts", "method": "all"}, target = self.home_alexa, title = "Home Assistant: Alexa Doorbell", message = "Your attention please. There is someone at the door!")
     self.log("NOTIFY HOME")
 
 
   def notify_guest(self, kwargs):
-    self.call_service("notify/alexa_media", data = {"type": "announce" if self.door_alexa_bell else "tts", "method": "all"}, target = self.door_alexa, message = self.guest_greeting(kwargs["time_okay"]))
+    self.call_service("notify/alexa_media", data = {"type": "announce" if self.door_alexa_bell else "tts", "method": "all"}, target = self.door_alexa, title = "Home Assistant: Alexa Doorbell", message = kwargs["message"])
     self.log("NOTIFY GUEST")
 
