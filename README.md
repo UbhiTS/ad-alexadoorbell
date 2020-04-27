@@ -4,10 +4,10 @@
 
 ### For SONOS, set Announce_Bell: False (thanks to @5and0)
 
-Amazon Alexa will notify you like a doorbell, (thus the name, so creative aren't I!) based on a motion sensor placed on your doorway.
+Amazon Alexa will notify you like a doorbell, (thus the name, so creative isn't it!) based on a motion sensor placed on your doorway. Ever since we've set this up in our home, we always get praises and surprised looks from our guests when they come. Your home suddenly gets a voice, something like Jarvis ... Awesome! 
 
 You can also :- 
-- add a door sensor (like the [Ecolink Door Sensor](https://www.amazon.com/Aeotec-Window-Contact-sensors-Battery/dp/B07PDDX3K6/ref=sr_1_16?dchild=1&keywords=eco+wave+door+sensor&qid=1587791320&s=electronics&sr=1-16) or any other) to the setup to only ring the bell if the door is currently closed, and has been closed for the last 30 seconds or more. This is so that the bell only rings when someone arrives at your door and not when you step out.
+- add a door sensor (like the [Ecolink Door Sensor](https://www.amazon.com/Aeotec-Window-Contact-sensors-Battery/dp/B07PDDX3K6/ref=sr_1_16?dchild=1&keywords=eco+wave+door+sensor&qid=1587791320&s=electronics&sr=1-16) or any other) to only ring the bell if the door is currently closed, and has been closed for at least the last 30 seconds. This is so that the bell only rings when someone arrives at your door and not when you step out.
 - add an outdoor Alexa to greet your guest with a pleasant message based on the time of day
 - add a doorbell (like the [Aeotec Doorbell](https://aeotec.com/z-wave-doorbell/) or any other) to ring when a guest arrives outside your door
 
@@ -24,11 +24,9 @@ Also, if you want to see a walkthrough of my Home Assistant configuration, I hav
 ## Installation
 **NEEDS THE [Alexa Media Player](https://github.com/custom-components/alexa_media_player) HACS Integration from Keaton Taylor and Alan Tse**
 
-Use [HACS](https://github.com/custom-components/hacs) or [download](https://github.com/UbhiTS/ad-alexatalkingclock) the `alexa_doorbell` directory from inside the `apps` directory to your local `apps` directory, then add the configuration to enable the `alexa_doorbell` module.
+Use [HACS](https://github.com/custom-components/hacs) or [download](https://github.com/UbhiTS/ad-alexadoorbell) the `alexa_doorbell.py` from inside the `apps` directory to your local `apps` directory, and add the configuration to enable the app.
 
-## App Configuration (config/appdaemon/apps/apps.yaml)
-
-### Basic Config ###
+### Basic Config (config/appdaemon/apps/apps.yaml)
 ```yaml
 alexa_doorbell:
   module: alexa_doorbell
@@ -37,10 +35,10 @@ alexa_doorbell:
     motion_sensor: binary_sensor.main_door_motion
   home:
     alexa: media_player.kitchen_alexa
-    announce_bell: False # optional, set to False for SONOS
+    announce_bell: True # set to False for SONOS
 ```
 
-### Advanced Config ###
+### Advanced Config
 ```yaml
 alexa_doorbell:
   module: alexa_doorbell
@@ -49,14 +47,14 @@ alexa_doorbell:
     motion_sensor: binary_sensor.main_door_motion
     sensor: binary_sensor.main_door # optional
     alexa: media_player.entryway_alexa # optional
-    announce_bell: False # optional, set to False for SONOS
+    announce_bell: False # set to False for SONOS
   home:
     alexa: media_player.kitchen_alexa
     doorbell: switch.living_room_doorbell # optional
-    announce_bell: False # optional, set to False for SONOS
+    announce_bell: True # set to False for SONOS
   time:
-    start: "07:00:00" # optional, default 7 AM
-    end: "18:00:00" # optional, default 10 PM
+    start: "07:00:00"
+    end: "18:00:00"
 ```
 
 key | optional | type | default | description
@@ -74,9 +72,7 @@ key | optional | type | default | description
 `time\|end` | True | time | 22:00:00 | The time to disable the service. (24h format)
 
 ## Thank you!
-This app wouldn't be possible without the amazing work done by the developers and community at **[Home Assistant](https://www.home-assistant.io/)**, and of Keaton Taylor and Alan Tse on their **Alexa Media Player integration** for Home Assistant. *https://github.com/custom-components/alexa_media_player*
-
-Ever since we've set this up in our home, we always get praises and surprised looks from our guests when they come. Your home suddenly gets a voice, something like Jarvis ... awesome ! 
+This app wouldn't be possible without the amazing work done by the developers and community at **[Home Assistant](https://www.home-assistant.io/)**
 
 If you like my work and feel gracious, you can buy me a beer below ;)
 
