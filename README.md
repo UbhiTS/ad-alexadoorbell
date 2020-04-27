@@ -47,11 +47,11 @@ alexa_doorbell:
     motion_sensor: binary_sensor.main_door_motion
     sensor: binary_sensor.main_door # optional
     alexa: media_player.entryway_alexa # optional
-    announce_bell: False # set to False for SONOS
+    announce_bell: False # optional, set to False for SONOS
   home:
     alexa: media_player.kitchen_alexa
     doorbell: switch.living_room_doorbell # optional
-    announce_bell: True # set to False for SONOS
+    announce_bell: True # optional, set to False for SONOS
   time:
     start: "07:00:00"
     end: "18:00:00"
