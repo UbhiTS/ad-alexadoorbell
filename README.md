@@ -1,11 +1,11 @@
-# Alexa (& Friends) Doorbell : AppDaemon (HASS) :chicken:
+# Alexa (& Friends) Doorbell : AppDaemon HASS :chicken:
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
-### For Sonos, set announce_bell:false (thanks to @5and0)
-### For Google Home, set announce_bell:false (can someone please confirm?)
+**For Sonos, set announce_bell:false (thanks to @5and0)**
+**For Google Home, set announce_bell:false (can someone please confirm?)**
 
-Amazon Alexa and other smart speakers will notify you like a doorbell, (thus the name, so creative isn't it!) based on a motion sensor placed on your doorway. Ever since we've set this up in our home, we always get praises and surprised looks from our guests when they come. Your home suddenly gets a voice, something like Jarvis ... Awesome! 
+Alexa and other smart speakers will notify you like a doorbell, (thus the name, so creative isn't it!) based on a motion sensor placed on your doorway. Ever since we've set this up in our home, we always get praises and surprised looks from our guests when they come. Your home suddenly gets a voice, something like Jarvis ... Awesome! 
 
 You can also :- 
 - add a door sensor (like the [Ecolink Door Sensor](https://www.amazon.com/Aeotec-Window-Contact-sensors-Battery/dp/B07PDDX3K6/ref=sr_1_16?dchild=1&keywords=eco+wave+door+sensor&qid=1587791320&s=electronics&sr=1-16) or any other) to only ring the bell if the door is currently closed, and has been closed for at least the last 30 seconds. This is so that the bell only rings when someone arrives at your door and not when you step out.
@@ -24,7 +24,7 @@ Also, if you want to see a walkthrough of my Home Assistant configuration, I hav
 - [Home Automation on 'STEROIDS' : Video Walkthrough](https://youtu.be/qqktLE9_45A)
 
 ## Installation
-Needs the **[Alexa Media Player](https://github.com/custom-components/alexa_media_player)** or other TTS Integration
+**Needs the [Alexa Media Player](https://github.com/custom-components/alexa_media_player) or other TTS integration**
 
 Use [HACS](https://github.com/custom-components/hacs) or [download](https://github.com/UbhiTS/ad-alexadoorbell) the `alexa_doorbell.py` from inside the `apps` directory to your local `apps` directory, and add the configuration to enable the app.
 
@@ -65,7 +65,7 @@ key | optional | type | default | description
 `class` | **False** | string | AlexaDoorbell | The name of the Class.
 `door\|motion_sensor` | **False** | motion_sensor |  | The motion sensor to trigger the app.
 `door\|sensor` | True | binary_sensor |  | Set to trigger based on door status
-`door\|alexa` | True | media_player |  | Set to greet your guest with a pleasant greeting
+`door\|alexa` | True | media_player |  | Set your Alexa (or other Smart Speaker) to greet your guest with a pleasant greeting
 `door\|announce_bell` | True | bool | False | Prefix bell sound before announcement. Set to false for SONOS
 `home\|alexa` | **False** | media_player |  | The Alexa (or other smart speaker) to notify inside the house
 `home\|announce_bell` | True | bool | False | Prefix bell sound before announcement. Set to false for SONOS
@@ -75,6 +75,8 @@ key | optional | type | default | description
 
 ## Thank you!
 This app wouldn't be possible without the amazing work done by the developers and community at **[Home Assistant](https://www.home-assistant.io/)**
+
+A very special thanks to **Keaton Taylor** and **Alan Tse** whose work on **[Alexa Media Player](https://github.com/custom-components/alexa_media_player)** was the basis of my inspiration and my work to code all the above listed apps!
 
 If you like my work and feel gracious, you can buy me a beer below ;)
 
