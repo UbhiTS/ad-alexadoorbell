@@ -2,8 +2,8 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
-**For Sonos, set announce_bell:false (thanks to @5and0)**
-**For Google Home, set announce_bell:false (can someone please confirm?)**
+### For Sonos, set announce_bell:false (thanks to @5and0)
+### For Google Home, set announce_bell:false (can someone please confirm?)
 
 Alexa and other smart speakers will notify you like a doorbell, (thus the name, so creative isn't it!) based on a motion sensor placed on your doorway. Ever since we've set this up in our home, we always get praises and surprised looks from our guests when they come. Your home suddenly gets a voice, something like Jarvis ... Awesome! 
 
