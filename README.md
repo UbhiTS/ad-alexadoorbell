@@ -54,7 +54,7 @@ alexa_doorbell:
     announce_bell: True # optional, set to False for SONOS
   time:
     start: "07:00:00"
-    end: "18:00:00"
+    end: "22:00:00"
 ```
 
 key | optional | type | default | description
