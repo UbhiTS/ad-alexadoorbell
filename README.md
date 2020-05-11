@@ -37,6 +37,9 @@ alexa_doorbell:
   home:
     alexa: media_player.kitchen_alexa
     announce_bell: True # optional, set to False for SONOS
+  time:
+    start: "07:00:00"
+    end: "22:00:00"
 ```
 
 ### Advanced Config
