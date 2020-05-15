@@ -60,8 +60,8 @@ alexa_doorbell:
     doorbell: switch.living_room_doorbell    # optional
     announce_bell: False                     # optional
   time:
-    start: "07:00:00"                        # optional, default 7 AM
-    end: "22:00:00"                          # optional, default 10 PM
+    start: "07:00:00"
+    end: "22:00:00"
 ```
 
 key | optional | type | default | description
