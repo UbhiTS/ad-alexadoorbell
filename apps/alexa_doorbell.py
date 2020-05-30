@@ -47,7 +47,7 @@ class AlexaDoorbell(hass.Hass):
       self.time_start = datetime.strptime(self.args["time"]["start"], '%H:%M:%S').time() if "start" in self.args["time"] else self.time_start
       self.time_end = datetime.strptime(self.args["time"]["end"], '%H:%M:%S').time() if "end" in self.args["time"] else self.time_end
     
-    self.log(f"INIT: Start {self.time_start.strftime('%H:%M:%S')}, End {self.time_end.strftime('%H:%M:%S')}")
+    self.log(f"\nINIT - ALEXA DOORBELL\n  START {self.time_start.strftime('%H:%M:%S')}\n  END   {self.time_end.strftime('%H:%M:%S')}")
 
 
   def evaluate_and_ring_doorbell(self, entity, attribute, old, new, kwargs):
@@ -58,7 +58,7 @@ class AlexaDoorbell(hass.Hass):
     if new == "on":
       door_closed = True if self.door_sensor is None else self.get_state(self.door_sensor) == "off"
       last_door_closed_seconds = 60 if self.door_sensor is None else datetime.now().timestamp() - self.convert_utc(self.get_state(self.door_sensor, attribute = 'last_changed')).timestamp()
-      time_okay = self.time_start <= datetime.now().time() and datetime.now().time() <= self.time_end
+      time_okay = self.is_time_okay(self.time_start, self.time_end)
 
       if door_closed and last_door_closed_seconds > 30:
         guest_notify_delay = 5
@@ -115,3 +115,10 @@ class AlexaDoorbell(hass.Hass):
     self.call_service("notify/alexa_media", data = {"type": "announce" if self.door_alexa_bell else "tts", "method": "all"}, target = self.door_alexa, title = "Home Assistant: Alexa Doorbell", message = kwargs["message"])
     self.log("NOTIFY GUEST")
 
+
+  def is_time_okay(self, start, end):
+    current_time = datetime.now().time()
+    if (start < end):
+      return start <= current_time and current_time <= end
+    else:
+      return start <= current_time or current_time <= end
