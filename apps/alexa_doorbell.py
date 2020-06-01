@@ -21,11 +21,13 @@ from datetime import datetime, time
 #  time:
 #    start: "07:00:00"                        # optional, default 7 AM
 #    end: "22:00:00"                          # optional, default 10 PM
+#  debug: false
 
 class AlexaDoorbell(hass.Hass):
 
   def initialize(self):
     
+    self.debug = True;
     self.door_motion_sensor = self.args["door"]["motion_sensor"] if "motion_sensor" in self.args["door"] else None
     self.door_sensor = self.args["door"]["sensor"] if "sensor" in self.args["door"] else None
     self.door_alexa = self.args["door"]["alexa"] if "alexa" in self.args["door"] else None
@@ -47,8 +49,9 @@ class AlexaDoorbell(hass.Hass):
       self.time_start = datetime.strptime(self.args["time"]["start"], '%H:%M:%S').time() if "start" in self.args["time"] else self.time_start
       self.time_end = datetime.strptime(self.args["time"]["end"], '%H:%M:%S').time() if "end" in self.args["time"] else self.time_end
     
-    self.log(f"\nINIT - ALEXA DOORBELL\n  START {self.time_start.strftime('%H:%M:%S')}\n  END   {self.time_end.strftime('%H:%M:%S')}")
-
+    self.debug_log(f"\n**** INIT - ALEXA DOORBELL ****\n  START {self.time_start.strftime('%H:%M:%S')}\n  END   {self.time_end.strftime('%H:%M:%S')}\n")
+    
+    self.debug = bool(self.args["debug"]) if "debug" in self.args else self.debug
 
   def evaluate_and_ring_doorbell(self, entity, attribute, old, new, kwargs):
       # IF MOTION DETECTED
@@ -67,15 +70,15 @@ class AlexaDoorbell(hass.Hass):
           self.run_in(self.notify_home, 0)
         else:
           guest_notify_delay = 0
-          self.log("OUTSIDE TIME RANGE")
+          self.debug_log("OUTSIDE TIME RANGE")
           
         if self.door_alexa is not None:
           self.run_in(self.notify_guest, guest_notify_delay, message = self.guest_greeting(time_okay))
       else:
         if not door_closed:
-          self.log("DOOR IS OPEN")
+          self.debug_log("DOOR IS OPEN")
         elif last_door_closed_seconds < 30:
-          self.log("DOOR CLOSED < 30 SECS AGO")
+          self.debug_log("DOOR CLOSED < 30 SECS AGO")
 
 
   def guest_greeting(self, time_okay):
@@ -98,22 +101,22 @@ class AlexaDoorbell(hass.Hass):
     self.call_service("switch/turn_off", entity_id = self.door_bell_switch)
     if self.home_doorbell is not None: self.run_in(self.doorbell_ring, 0)
     self.run_in(self.notify_home, 0)
-    self.log("DOORBELL OVERRIDE SWITCH")
+    self.debug_log("DOORBELL OVERRIDE SWITCH")
 
 
   def doorbell_ring(self, kwargs):
     self.call_service("switch/turn_on", entity_id = self.home_doorbell)
-    self.log("DOORBELL RING")
+    self.debug_log("DOORBELL RING")
     
     
   def notify_home(self, kwargs):
     self.call_service("notify/alexa_media", data = {"type": "announce" if self.home_alexa_bell else "tts", "method": "all"}, target = self.home_alexa, title = "Home Assistant: Alexa Doorbell", message = "Your attention please. There is someone at the door!")
-    self.log("NOTIFY HOME")
+    self.debug_log("NOTIFY HOME")
 
 
   def notify_guest(self, kwargs):
     self.call_service("notify/alexa_media", data = {"type": "announce" if self.door_alexa_bell else "tts", "method": "all"}, target = self.door_alexa, title = "Home Assistant: Alexa Doorbell", message = kwargs["message"])
-    self.log("NOTIFY GUEST")
+    self.debug_log("NOTIFY GUEST")
 
 
   def is_time_okay(self, start, end):
@@ -122,3 +125,7 @@ class AlexaDoorbell(hass.Hass):
       return start <= current_time and current_time <= end
     else:
       return start <= current_time or current_time <= end
+      
+  def debug_log(self, message):
+    if self.debug:
+      self.log(message)
